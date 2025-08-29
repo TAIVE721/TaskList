@@ -1,0 +1,9 @@
+services:
+  dockersito:
+    image: postgres
+    environment:
+      - POSTGRES_DB=papu
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123
+    ports:
+      - "5432:5432"
