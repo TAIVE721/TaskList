@@ -1,4 +1,4 @@
-package com.nekotasks.arc.domain.mappers.impl;
+package com.nekotasks.arc.mappers.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,8 +9,8 @@ import com.nekotasks.arc.domain.dto.TaskListDto;
 import com.nekotasks.arc.domain.entities.Task;
 import com.nekotasks.arc.domain.entities.TaskStatus;
 import com.nekotasks.arc.domain.entities.Tasklist;
-import com.nekotasks.arc.domain.mappers.TaskListMapper;
-import com.nekotasks.arc.domain.mappers.TaskMapper;
+import com.nekotasks.arc.mappers.TaskListMapper;
+import com.nekotasks.arc.mappers.TaskMapper;
 
 @Component
 public class TaskListMapperImpl implements TaskListMapper {
@@ -41,14 +41,14 @@ public class TaskListMapperImpl implements TaskListMapper {
                 taskList.getTitle(),
                 taskList.getDescription(),
                 Optional.ofNullable(taskList.getTasks()).map(List::size).orElse(0),
-                calculateTaskListPRogress(taskList.getTasks()),
+                calculateTaskListProgress(taskList.getTasks()),
                 Optional.ofNullable(taskList.getTasks()).map(tasks -> tasks.stream().map(taskMapper::toDto).toList())
                         .orElse(null)
 
         );
     }
 
-    private Double calculateTaskListPRogress(List<Task> tasks) {
+    private Double calculateTaskListProgress(List<Task> tasks) {
         if (null == tasks) {
             return null;
         }

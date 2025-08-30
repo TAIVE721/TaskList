@@ -1,4 +1,4 @@
-package com.nekotasks.arc.domain.mappers;
+package com.nekotasks.arc.mappers;
 
 import com.nekotasks.arc.domain.dto.TaskDto;
 import com.nekotasks.arc.domain.entities.Task;
