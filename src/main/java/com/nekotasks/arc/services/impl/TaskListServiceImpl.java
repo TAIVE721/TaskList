@@ -2,6 +2,9 @@ package com.nekotasks.arc.services.impl;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
@@ -45,6 +48,37 @@ public class TaskListServiceImpl implements TaskListService {
 
         ));
 
+    }
+
+    @Override
+    public Optional<Tasklist> getTaskList(UUID id) {
+        return taskListRepository.findById(id);
+
+    }
+
+    @Override
+    public Tasklist updateTasklist(UUID taskListId, Tasklist taskList) {
+        if (null == taskList.getId()) {
+            throw new IllegalArgumentException("Task list must have an ID");
+        }
+
+        if (!Objects.equals(taskList.getId(), taskListId)) {
+            throw new IllegalArgumentException("Attempting to change task list ID, this is not permitted");
+        }
+
+        Tasklist existingTaskList = taskListRepository.findById(taskListId)
+                .orElseThrow(() -> new IllegalArgumentException("Task list not found"));
+
+        existingTaskList.setTitle(taskList.getTitle());
+        existingTaskList.setDescription(taskList.getDescription());
+        existingTaskList.setUpdated(LocalDateTime.now());
+        return taskListRepository.save(existingTaskList);
+
+    }
+
+    @Override
+    public void deleteTaskList(UUID taskListId) {
+        taskListRepository.deleteById(taskListId);
     }
 
 }
