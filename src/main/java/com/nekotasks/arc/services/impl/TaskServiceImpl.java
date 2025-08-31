@@ -8,7 +8,6 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
-import com.nekotasks.arc.domain.dto.TaskDto;
 import com.nekotasks.arc.domain.entities.Task;
 import com.nekotasks.arc.domain.entities.TaskPriority;
 import com.nekotasks.arc.domain.entities.TaskStatus;
