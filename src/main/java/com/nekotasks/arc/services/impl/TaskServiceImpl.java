@@ -108,7 +108,7 @@ public class TaskServiceImpl implements TaskService {
     @Transactional
     @Override
     public void deleteTask(UUID taskListId, UUID taskId) {
-        taskRepository.deleteByTaskListAndId(taskListId, taskId);
+        taskRepository.deleteByTaskListIdAndId(taskListId, taskId);
 
     }
 
